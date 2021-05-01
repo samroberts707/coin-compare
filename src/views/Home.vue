@@ -39,7 +39,7 @@ export default {
   width: 100vw;
   height: 100vh;
   grid-template-columns: 300px 1fr 300px;
-  grid-template-rows: 150px 1fr 1fr 1fr 150px;
+  grid-template-rows: 150px 1fr 1fr 1fr 100px;
   gap: 0px 0px;
   grid-template-areas:
     "coin-one header coin-two"
