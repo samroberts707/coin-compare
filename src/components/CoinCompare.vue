@@ -1,15 +1,11 @@
 <template>
-    <div class="coin-compare">
-
-    </div>
+  <div class="coin-compare"></div>
 </template>
 
 <script>
-    export default {
-        name: 'CoinCompare'
-    }
+export default {
+  name: "CoinCompare",
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

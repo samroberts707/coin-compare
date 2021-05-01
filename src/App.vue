@@ -5,7 +5,7 @@
 </template>
 
 <style lang="scss">
- @import url('./assets/sass/reset.scss');
+@import url("./assets/sass/reset.scss");
 
 body {
   scroll-behavior: smooth;
@@ -13,9 +13,9 @@ body {
 }
 :root {
   --deep-purple: #141736;
-  --purple: #9D72FF;
-  --green: #01FFC3;
-  --red: #F21A1D;
-  --yellow: #FEF900;
+  --purple: #9d72ff;
+  --green: #01ffc3;
+  --red: #f21a1d;
+  --yellow: #fef900;
 }
 </style>
