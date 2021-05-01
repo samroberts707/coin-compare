@@ -21,13 +21,20 @@ body {
   li,
   a,
   button,
-  span {
+  span,
+  input,
+  textarea {
     font-family: "IBM Plex Mono", monospace;
   }
   h1 {
     font-size: 30px;
   }
-  p {
+  p,
+  li,
+  a,
+  span,
+  input,
+  textarea {
     font-size: 16px;
   }
 }
@@ -35,6 +42,7 @@ body {
   --deep-purple: #141736;
   --purple: #9d72ff;
   --green: #01ffc3;
+  --blue: #75d5fd;
   --red: #f21a1d;
   --yellow: #fef900;
 }

@@ -1,12 +1,12 @@
 <template>
   <div class="home">
-    <CoinSelector />
+    <CoinSelector :coins="coins" />
     <Header />
     <CoinPrice />
     <CoinCompare />
     <CoinPrice />
     <Footer />
-    <CoinSelector />
+    <CoinSelector :coins="coins" />
   </div>
 </template>
 
@@ -24,6 +24,14 @@ export default {
     CoinCompare,
     Header,
     Footer,
+  },
+  computed: {
+    coins() {
+      return this.$store.state.coin_list;
+    },
+  },
+  mounted() {
+    this.$store.dispatch("getCoinList");
   },
 };
 </script>
@@ -47,7 +55,7 @@ export default {
     "coin-one coin-compare coin-two"
     "coin-one coin-two-price coin-two"
     "coin-one footer coin-two";
-
+  overflow: hidden;
   .coin-selector:first-child {
     grid-area: coin-one;
   }

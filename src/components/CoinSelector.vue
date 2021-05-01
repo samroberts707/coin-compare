@@ -1,10 +1,18 @@
 <template>
-  <div class="coin-selector"></div>
+  <div class="coin-selector">
+    <input placeholder="Search" class="coin-search" />
+    <div class="coin-wrapper">
+      <div class="coin" v-for="coin in coins" :key="coin.id">
+        <p>{{ coin.name }} ({{ coin.symbol }})</p>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: "CoinSelector",
+  props: ["coins"],
 };
 </script>
 
@@ -16,5 +24,38 @@ div.coin-selector {
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  box-shadow: 0px 0px 13px 0px #0a0a0a;
+  overflow: hidden;
+  input.coin-search {
+    display: block;
+    position: relative;
+    width: calc(100% - 50px);
+    background-color: var(--deep-purple);
+    padding: 15px 25px;
+    border: none;
+    border-bottom: 1px solid #0a0a0a;
+    box-shadow: none;
+    outline: none;
+    color: var(--yellow);
+  }
+  div.coin-wrapper {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 10px 0;
+    overflow-y: scroll;
+    div.coin {
+      display: block;
+      position: relative;
+      padding: 10px 30px;
+      cursor: pointer;
+      p {
+        color: var(--blue);
+      }
+    }
+  }
 }
 </style>
