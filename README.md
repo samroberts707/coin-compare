@@ -1,4 +1,5 @@
-# coins
+# Coin Compare
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7b567ffa-72b8-47ea-94aa-7ae0ce90bb5d/deploy-status)](https://app.netlify.com/sites/coin-compare/deploys)
 
 ## Project setup
 ```
