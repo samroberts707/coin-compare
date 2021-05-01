@@ -1,16 +1,29 @@
 <template>
   <div class='home'>
     <CoinSelector />
+    <Header />
+    <CoinPrice />
+    <CoinCompare />
+    <CoinPrice />
+    <Footer />
     <CoinSelector />
   </div>
 </template>
 
 <script>
+import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
 import CoinSelector from "@/components/CoinSelector.vue";
+import CoinPrice from '@/components/CoinPrice.vue';
+import CoinCompare from '@/components/CoinCompare.vue';
 export default {
   name: 'Home',
   components: {
-    CoinSelector
+    CoinSelector,
+    CoinPrice,
+    CoinCompare,
+    Header,
+    Footer,
   },
 };
 </script>
