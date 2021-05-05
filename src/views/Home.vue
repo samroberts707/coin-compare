@@ -32,6 +32,8 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getCoinList");
+    this.$store.dispatch("selectCoin", ["bitcoin", "one"]);
+    this.$store.dispatch("selectCoin", ["dogecoin", "two"]);
   },
 };
 </script>
