@@ -1,12 +1,12 @@
 <template>
   <div class="home">
-    <CoinSelector :coins="coins" />
+    <CoinSelector :coins="coins" coin_to_control="one" />
     <Header />
     <CoinPrice />
     <CoinCompare />
     <CoinPrice />
     <Footer />
-    <CoinSelector :coins="coins" />
+    <CoinSelector :coins="coins" coin_to_control="two" />
   </div>
 </template>
 

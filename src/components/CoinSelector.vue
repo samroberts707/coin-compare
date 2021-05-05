@@ -2,8 +2,13 @@
   <div class="coin-selector">
     <input placeholder="Search" class="coin-search" v-model="filterVal" />
     <div class="coin-wrapper">
-      <div class="coin" v-for="coin in filteredCoins" :key="coin.id">
-        <p>{{ coin.name }} ({{ coin.symbol }})</p>
+      <div
+        class="coin"
+        v-for="coin in filteredCoins"
+        :key="coin.id"
+        v-on:click="selectCoin(coin.id)"
+      >
+        {{ coin.name }} ({{ coin.symbol }})
       </div>
     </div>
   </div>
@@ -12,7 +17,7 @@
 <script>
 export default {
   name: "CoinSelector",
-  props: ["coins"],
+  props: ["coins", "coin_to_control"],
   data: function () {
     return {
       filterVal: null,
@@ -30,6 +35,11 @@ export default {
           p.symbol.toLowerCase().includes(searchText)
         );
       });
+    },
+  },
+  methods: {
+    selectCoin: function (coin_id) {
+      this.$store.dispatch("selectCoin", [coin_id, this.coin_to_control]);
     },
   },
 };
@@ -71,9 +81,7 @@ div.coin-selector {
       position: relative;
       padding: 10px 30px;
       cursor: pointer;
-      p {
-        color: var(--blue);
-      }
+      color: var(--blue);
     }
   }
 }
