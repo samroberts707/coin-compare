@@ -1,8 +1,8 @@
 <template>
   <div class="coin-selector">
-    <input placeholder="Search" class="coin-search" />
+    <input placeholder="Search" class="coin-search" v-model="filterVal" />
     <div class="coin-wrapper">
-      <div class="coin" v-for="coin in coins" :key="coin.id">
+      <div class="coin" v-for="coin in filteredCoins" :key="coin.id">
         <p>{{ coin.name }} ({{ coin.symbol }})</p>
       </div>
     </div>
@@ -13,6 +13,25 @@
 export default {
   name: "CoinSelector",
   props: ["coins"],
+  data: function () {
+    return {
+      filterVal: null,
+    };
+  },
+  computed: {
+    filteredCoins() {
+      if (!this.filterVal) return this.coins;
+
+      let searchText = this.filterVal.toLowerCase();
+
+      return this.coins.filter((p) => {
+        return (
+          p.name.toLowerCase().includes(searchText) ||
+          p.symbol.toLowerCase().includes(searchText)
+        );
+      });
+    },
+  },
 };
 </script>
 
