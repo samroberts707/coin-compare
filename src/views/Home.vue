@@ -33,7 +33,7 @@ export default {
   mounted() {
     this.$store.dispatch("getCoinList");
     this.$store.dispatch("selectCoin", ["bitcoin", "one"]);
-    this.$store.dispatch("selectCoin", ["dogecoin", "two"]);
+    this.$store.dispatch("selectCoin", ["ethereum", "two"]);
   },
 };
 </script>

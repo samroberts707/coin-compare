@@ -17,6 +17,8 @@ div.header {
   align-self: center;
   justify-self: center;
   h1 {
+    font-family: "Olympic Carrier", sans-serif;
+    font-size: 80px;
     color: var(--green);
   }
 }
