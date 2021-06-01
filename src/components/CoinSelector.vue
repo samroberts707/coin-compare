@@ -4,6 +4,7 @@
     <div class="coin-wrapper">
       <div
         class="coin"
+        :class="{ 'active' : coin.id == coinSelected }"
         v-for="coin in filteredCoins"
         :key="coin.id"
         v-on:click="selectCoin(coin.id)"
@@ -21,6 +22,7 @@ export default {
   data: function () {
     return {
       filterVal: null,
+      coinSelected: null,
     };
   },
   computed: {
@@ -39,6 +41,7 @@ export default {
   },
   methods: {
     selectCoin: function (coin_id) {
+      this.$data.coinSelected = coin_id;
       this.$store.dispatch("selectCoin", [coin_id, this.coin_to_control]);
     },
   },
@@ -82,6 +85,11 @@ div.coin-selector {
       padding: 10px 30px;
       cursor: pointer;
       color: var(--blue);
+      transition: background-color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+      will-change: bakcground-color;
+      &:hover, &.active {
+        background-color: var(--purple);
+      }
     }
   }
 }

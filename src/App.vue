@@ -23,7 +23,8 @@ body {
   button,
   span,
   input,
-  textarea {
+  textarea,
+  div {
     font-family: "IBM Plex Mono", monospace;
   }
   h1 {
