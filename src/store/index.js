@@ -32,7 +32,7 @@ export default new Vuex.Store({
             )
             .then((response) => {
               localStorage.setItem("coin-list", JSON.stringify(response.data));
-              commit("SET_COIN_LIST", JSON.parse(coinList));
+              commit("SET_COIN_LIST", response.data);
             });
     },
     selectCoin({ commit }, data) {
