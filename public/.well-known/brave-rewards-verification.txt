@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: coin-compare.netlify.app
+Token: 5818d1aeb892540a4cdd03a94109436e08b9dee4d4b16365c74358fefaaa04d7
