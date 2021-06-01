@@ -22,14 +22,18 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    getCoinList({ commit }) {
-      axios
-        .get(
-          "https://api.coingecko.com/api/v3/coins/list?include_platform=false"
-        )
-        .then((response) => {
-          commit("SET_COIN_LIST", response.data);
-        });
+    async getCoinList({ commit }) {
+      const coinList = localStorage.getItem("coin-list");
+      coinList
+        ? commit("SET_COIN_LIST", JSON.parse(coinList))
+        : axios
+            .get(
+              "https://api.coingecko.com/api/v3/coins/list?include_platform=false"
+            )
+            .then((response) => {
+              localStorage.setItem("coin-list", JSON.stringify(response.data));
+              commit("SET_COIN_LIST", JSON.parse(coinList));
+            });
     },
     selectCoin({ commit }, data) {
       axios
