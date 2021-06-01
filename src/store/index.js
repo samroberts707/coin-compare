@@ -22,7 +22,7 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    async getCoinList({ commit }) {
+    getCoinList({ commit }) {
       const coinList = localStorage.getItem("coin-list");
       coinList
         ? commit("SET_COIN_LIST", JSON.parse(coinList))
@@ -36,6 +36,7 @@ export default new Vuex.Store({
             });
     },
     selectCoin({ commit }, data) {
+      // TODO - Need to Cache these requests to reduce API hits
       axios
         .get(
           "https://api.coingecko.com/api/v3/coins/" +
