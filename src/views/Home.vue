@@ -2,9 +2,9 @@
   <div class="home">
     <CoinSelector :coins="coins" coin_to_control="one" />
     <Header />
-    <CoinPrice />
+    <CoinPrice coin_to_view="one" />
     <CoinCompare />
-    <CoinPrice />
+    <CoinPrice coin_to_view="two" />
     <Footer />
     <CoinSelector :coins="coins" coin_to_control="two" />
   </div>
@@ -49,7 +49,7 @@ export default {
   width: 100vw;
   height: 100vh;
   grid-template-columns: 300px 1fr 300px;
-  grid-template-rows: 150px 1fr 1fr 1fr 100px;
+  grid-template-rows: 150px 1fr 2fr 1fr 100px;
   gap: 0px 0px;
   grid-template-areas:
     "coin-one header coin-two"

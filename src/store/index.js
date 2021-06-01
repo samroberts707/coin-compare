@@ -37,7 +37,11 @@ export default new Vuex.Store({
     },
     selectCoin({ commit }, data) {
       axios
-        .get("https://api.coingecko.com/api/v3/coins/" + data[0])
+        .get(
+          "https://api.coingecko.com/api/v3/coins/" +
+            data[0] +
+            "?tickers=false&market_data=true&community_data=true&developer_data=true&sparkline=false"
+        )
         .then((response) => {
           commit("SET_COIN_" + data[1].toUpperCase(), response.data);
         });

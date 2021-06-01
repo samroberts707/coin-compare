@@ -30,6 +30,9 @@ body {
   h1 {
     font-size: 30px;
   }
+  h2 {
+    font-size: 23px;
+  }
   p,
   li,
   a,

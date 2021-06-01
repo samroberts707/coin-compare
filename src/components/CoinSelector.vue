@@ -4,7 +4,7 @@
     <div class="coin-wrapper">
       <div
         class="coin"
-        :class="{ 'active' : coin.id == coinSelected }"
+        :class="{ active: coin.id == coinSelected }"
         v-for="coin in filteredCoins"
         :key="coin.id"
         v-on:click="selectCoin(coin.id)"
@@ -87,7 +87,8 @@ div.coin-selector {
       color: var(--blue);
       transition: background-color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
       will-change: bakcground-color;
-      &:hover, &.active {
+      &:hover,
+      &.active {
         background-color: var(--purple);
       }
     }
