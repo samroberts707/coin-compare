@@ -1,6 +1,7 @@
 <template>
   <div class="coin-compare">
-    <h1>
+    <Loading v-if="coinOne.length == 0 || coinTwo.length == 0"></Loading>
+    <h1 v-if="coinOne.length != 0 && coinTwo.length != 0">
       1 {{ coinOne.name }} ==
       {{
         coinOne.market_data.current_price.usd /
@@ -12,6 +13,7 @@
 </template>
 
 <script>
+import Loading from "@/components/Loading.vue";
 export default {
   name: "CoinCompare",
   computed: {
@@ -21,6 +23,9 @@ export default {
     coinTwo() {
       return this.$store.state.coin_two;
     },
+  },
+  components: {
+    Loading,
   },
 };
 </script>
