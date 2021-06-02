@@ -62,6 +62,8 @@ div.coin-price {
     img {
       display: block;
       justify-self: center;
+      height: 100%;
+      width: auto;
     }
     h2 {
       display: block;

@@ -11,6 +11,7 @@
 @font-face {
   font-family: "Olympic Carrier";
   src: url("./assets/fonts/olympic_carrier/olympiccarrierhalfital.ttf");
+  font-display: swap;
 }
 
 body {
