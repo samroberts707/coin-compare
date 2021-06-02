@@ -1,7 +1,11 @@
 <template>
   <div class="coin-price">
     <div class="name">
-      <img class="coin-logo" :src="coinData.image.small" />
+      <img
+        class="coin-logo"
+        :src="coinData.image.small"
+        :alt="coinData.localization.en"
+      />
       <h2>{{ coinData.localization.en }} ({{ coinData.symbol }})</h2>
     </div>
     <div class="price">

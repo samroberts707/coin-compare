@@ -2,9 +2,13 @@
   <div class="footer">
     <p>
       Powered by
-      <a href="https://www.coingecko.com/en" target="_blank">CoinGecko API</a>
+      <a href="https://www.coingecko.com/en" target="_blank" rel="noreferrer"
+        >CoinGecko API</a
+      >
       // Made by
-      <a href="https://samroberts.dev" target="_blank">Sam Roberts</a>
+      <a href="https://samroberts.dev" target="_blank" rel="noreferrer"
+        >Sam Roberts</a
+      >
     </p>
   </div>
 </template>
