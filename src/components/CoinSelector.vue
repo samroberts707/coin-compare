@@ -1,7 +1,8 @@
 <template>
   <div class="coin-selector">
     <input placeholder="Search" class="coin-search" v-model="filterVal" />
-    <div class="coin-wrapper">
+    <Loading v-if="filteredCoins.length == 0"></Loading>
+    <div class="coin-wrapper" v-if="filteredCoins.length != 0" >
       <div
         class="coin"
         :class="{ active: coin.id == coinSelected }"
@@ -16,6 +17,7 @@
 </template>
 
 <script>
+import Loading from "@/components/Loading.vue";
 export default {
   name: "CoinSelector",
   props: ["coins", "coin_to_control"],
@@ -44,6 +46,9 @@ export default {
       this.$data.coinSelected = coin_id;
       this.$store.dispatch("selectCoin", [coin_id, this.coin_to_control]);
     },
+  },
+  components: {
+    Loading,
   },
 };
 </script>
