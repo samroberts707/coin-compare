@@ -46,6 +46,23 @@ body {
   input,
   textarea {
     font-size: 16px;
+    line-height: 20px;
+  }
+  @media screen and (max-width: 768px) {
+    h1 {
+      font-size: 24px;
+    }
+    h2 {
+      font-size: 20px;
+    }
+    p,
+    li,
+    a,
+    span,
+    input,
+    textarea {
+      font-size: 14px;
+    }
   }
 }
 :root {
@@ -56,4 +73,7 @@ body {
   --red: #f21a1d;
   --yellow: #fef900;
 }
+// $large-breakpoint: 1200px;
+// $medium-breakpoint: 960px;
+// $small-breakpoint: 768px;
 </style>

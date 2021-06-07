@@ -21,5 +21,11 @@ div.header {
     font-size: 80px;
     color: var(--green);
   }
+  @media screen and (max-width: 768px) {
+    h1 {
+      font-size: 60px;
+      text-align: center;
+    }
+  }
 }
 </style>

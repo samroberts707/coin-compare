@@ -114,5 +114,21 @@ div.coin-price-wrapper {
       }
     }
   }
+  @media screen and (max-width: 768px) {
+    width: 65%;
+    max-width: none;
+    div.coin-price {
+      grid-template-areas:
+        "name"
+        "price";
+      grid-template-rows: 1fr 1fr;
+      div.name {
+        padding: 20px 20px 0 20px;
+      }
+      div.low-high {
+        display: none;
+      }
+    }
+  }
 }
 </style>

@@ -27,6 +27,7 @@ div.footer {
   p {
     text-align: center;
     color: var(--green);
+    margin: 0 20px;
     a {
       color: var(--yellow);
     }

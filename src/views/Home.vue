@@ -54,6 +54,7 @@ export default {
     "coin-one coin-two-price coin-two"
     "coin-one footer coin-two";
   overflow: hidden;
+  transition: grid-template-columns 0.4s ease-in-out;
   .coin-selector:first-child {
     grid-area: coin-one;
   }
@@ -74,6 +75,13 @@ export default {
   }
   .coin-compare {
     grid-area: coin-compare;
+  }
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: 200px 1fr 200px;
+  }
+  @media screen and (max-width: 960px) {
+    grid-template-columns: 0 1fr 0;
+    overflow-y: scroll;
   }
 }
 </style>

@@ -7,11 +7,13 @@
         <h1>{{ coinOne.name }}</h1>
       </div>
       <h1>=</h1>
-      <h1>{{
+      <h1>
+        {{
           (coinCount * coinOne.market_data.current_price.usd) /
           coinTwo.market_data.current_price.usd
         }}
-        {{ coinTwo.name }}</h1>
+        {{ coinTwo.name }}
+      </h1>
     </div>
   </div>
 </template>
@@ -76,7 +78,7 @@ div.coin-compare {
         display: inline;
       }
     }
-    
+
     h1 {
       display: block;
       color: var(--green);

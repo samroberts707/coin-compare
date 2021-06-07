@@ -40,9 +40,7 @@ export default new Vuex.Store({
     SET_COIN_TWO_LOADING(state, bool) {
       state.coin_two_loading = bool;
     },
-    // SET_COIN_LOADING_STATE(state, coin, bool) {
-    //   state["coin_" + coin + "_loading"] = bool;
-    // },
+    // TODO -- Optimize setting coin loading to one mutation
   },
   actions: {
     getCoinList({ commit }) {

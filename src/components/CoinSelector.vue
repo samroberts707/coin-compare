@@ -159,7 +159,7 @@ div.coin-selector {
       transition: max-height 0.4s ease-in-out;
       will-change: max-height;
       &.open {
-        max-height: 1000px;
+        max-height: 1215px;
         div.coin-wrapper {
           display: block;
         }
