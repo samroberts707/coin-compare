@@ -36,15 +36,44 @@ export default new Vuex.Store({
             });
     },
     selectCoin({ commit }, data) {
-      // TODO - Need to Cache these requests to reduce API hits
-      axios
-        .get(
-          "https://api.coingecko.com/api/v3/coins/" +
-            data[0] +
-            "?tickers=false&market_data=true&community_data=true&developer_data=true&sparkline=false"
-        )
-        .then((response) => {
-          commit("SET_COIN_" + data[1].toUpperCase(), response.data);
+      // TODO - Need to Cache these requests to reduce API hits - Completed By Aslam
+
+      // pulls from api if cached version older than specified time: default 10 mins
+      var refresh_duration  = 10;
+      var current_date = new Date();
+      var req = "https://api.coingecko.com/api/v3/coins/" + data[0] + "?tickers=false&market_data=true&community_data=true&developer_data=true&sparkline=false"
+
+      caches.open( "coin-compare_coins_v1" )
+        .then( (cache) => {
+          return cache.match(req).then( (response) => {
+
+            if(response){
+              response.json().then( res => {
+
+                var cache_age = (current_date - new Date(res.last_updated)) / 60000;
+                
+                if(cache_age > refresh_duration){
+                  axios
+                    .get(req)
+                    .then((response) => {
+                      cache.put( req , new Response( JSON.stringify(response.data), response.headers))
+                      commit("SET_COIN_" + data[1].toUpperCase(), response.data);
+                    });
+                }else{;
+                  commit("SET_COIN_" + data[1].toUpperCase(), res);
+                }
+              });
+            } else{
+              // If req isn't cached then get request and store data
+              axios
+                .get(req)
+                .then((response) => {
+                  cache.put( req , new Response( JSON.stringify(response.data), response.headers))
+                  commit("SET_COIN_" + data[1].toUpperCase(), response.data);
+                });
+            };
+
+          });
         });
     },
   },
