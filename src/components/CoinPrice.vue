@@ -75,8 +75,8 @@ div.coin-price-wrapper {
       img {
         display: block;
         justify-self: center;
-        height: 100%;
-        width: auto;
+        height: 50px;
+        width: 50px;
       }
       h2 {
         display: block;

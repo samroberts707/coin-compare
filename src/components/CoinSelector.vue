@@ -2,7 +2,7 @@
   <div class="coin-selector">
     <input placeholder="Search" class="coin-search" v-model="filterVal" />
     <Loading v-if="filteredCoins.length == 0"></Loading>
-    <div class="coin-wrapper" v-if="filteredCoins.length != 0" >
+    <div class="coin-wrapper" v-if="filteredCoins.length != 0">
       <div
         class="coin"
         :class="{ active: coin.id == coinSelected }"
