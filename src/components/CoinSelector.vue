@@ -1,14 +1,15 @@
 <template>
   <div class="coin-selector">
     <input placeholder="Search" class="coin-search" v-model="filterVal" />
-    <Loading v-if="filteredAllCoins.length == 0"></Loading>
-    <div class="coin-list" v-if="filteredAllCoins.length != 0">
+    <!-- <Loading v-if="coinLoading" /> -->
+    <div class="coin-list">
       <div
         class="popular selection"
         :class="{ open: openSelection == 'popular' }"
       >
         <button @click="chooseSelection('popular')">Popular</button>
-        <div class="coin-wrapper">
+        <Loading v-if="popularCoinListLoading" />
+        <div class="coin-wrapper" v-if="!popularCoinListLoading">
           <div
             class="coin"
             :class="{ active: coin.id == coinSelected }"
@@ -25,7 +26,8 @@
       </div> -->
       <div class="all selection" :class="{ open: openSelection == 'all' }">
         <button @click="chooseSelection('all')">All</button>
-        <div class="coin-wrapper">
+        <Loading v-if="coinListLoading" />
+        <div class="coin-wrapper" v-if="!coinListLoading">
           <div
             class="coin"
             :class="{ active: coin.id == coinSelected }"
@@ -45,7 +47,7 @@
 import Loading from "@/components/Loading.vue";
 export default {
   name: "CoinSelector",
-  props: ["coins", "coin_to_control"],
+  props: ["coin_to_control"],
   data: function () {
     return {
       filterVal: null,
@@ -79,6 +81,12 @@ export default {
     },
     coinSelected() {
       return this.$store.state["coin_" + this.coin_to_control].id;
+    },
+    coinListLoading() {
+      return this.$store.state.coin_list_loading;
+    },
+    popularCoinListLoading() {
+      return this.$store.state.popular_coin_list_loading;
     },
   },
   methods: {

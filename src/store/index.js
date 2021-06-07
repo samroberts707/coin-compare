@@ -7,56 +7,87 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     coin_list: [],
+    coin_list_loading: true,
     popular_coin_list: [],
+    popular_coin_list_loading: true,
     coin_one: [],
+    coin_one_loading: true,
     coin_two: [],
+    coin_two_loading: true,
   },
   mutations: {
     SET_COIN_LIST(state, coins) {
       state.coin_list = coins;
     },
+    SET_COIN_LIST_LOADING(state, bool) {
+      state.coin_list_loading = bool;
+    },
     SET_POPULAR_COIN_LIST(state, coins) {
       state.popular_coin_list = coins;
+    },
+    SET_POPULAR_COIN_LIST_LOADING(state, bool) {
+      state.popular_coin_list_loading = bool;
     },
     SET_COIN_ONE(state, coin) {
       state.coin_one = coin;
     },
+    SET_COIN_ONE_LOADING(state, bool) {
+      state.coin_one_loading = bool;
+    },
     SET_COIN_TWO(state, coin) {
       state.coin_two = coin;
     },
+    SET_COIN_TWO_LOADING(state, bool) {
+      state.coin_two_loading = bool;
+    },
+    // SET_COIN_LOADING_STATE(state, coin, bool) {
+    //   state["coin_" + coin + "_loading"] = bool;
+    // },
   },
   actions: {
     getCoinList({ commit }) {
+      commit("SET_COIN_LIST_LOADING", true);
       const coinList = localStorage.getItem("coin-list");
-      coinList
-        ? commit("SET_COIN_LIST", JSON.parse(coinList))
-        : axios
-            .get(
-              "https://api.coingecko.com/api/v3/coins/list?include_platform=false"
-            )
-            .then((response) => {
-              localStorage.setItem("coin-list", JSON.stringify(response.data));
-              commit("SET_COIN_LIST", response.data);
-            });
+      if (coinList) {
+        commit("SET_COIN_LIST", JSON.parse(coinList));
+        commit("SET_COIN_LIST_LOADING", false);
+      } else {
+        axios
+          .get(
+            "https://api.coingecko.com/api/v3/coins/list?include_platform=false"
+          )
+          .then((response) => {
+            localStorage.setItem("coin-list", JSON.stringify(response.data));
+            commit("SET_COIN_LIST", response.data);
+            commit("SET_COIN_LIST_LOADING", false);
+          });
+      }
     },
     getPopularCoinList({ commit }) {
+      commit("SET_POPULAR_COIN_LIST_LOADING", true);
       const coinList = localStorage.getItem("pop-coin-list");
-      coinList
-        ? commit("SET_POPULAR_COIN_LIST", JSON.parse(coinList))
-        : axios
-            .get(
-              "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=30&page=1&sparkline=false"
-            )
-            .then((response) => {
-              localStorage.setItem(
-                "pop-coin-list",
-                JSON.stringify(response.data)
-              );
-              commit("SET_POPULAR_COIN_LIST", response.data);
-            });
+      if (coinList) {
+        commit("SET_POPULAR_COIN_LIST", JSON.parse(coinList));
+        commit("SET_POPULAR_COIN_LIST_LOADING", false);
+      } else {
+        axios
+          .get(
+            "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=30&page=1&sparkline=false"
+          )
+          .then((response) => {
+            localStorage.setItem(
+              "pop-coin-list",
+              JSON.stringify(response.data)
+            );
+            commit("SET_POPULAR_COIN_LIST", response.data);
+            commit("SET_POPULAR_COIN_LIST_LOADING", false);
+          });
+      }
     },
     selectCoin({ commit }, data) {
       // TODO - Need to Cache these requests to reduce API hits - Completed By Aslam
+
+      commit("SET_COIN_" + data[1].toUpperCase() + "_LOADING", true);
 
       // pulls from api if cached version older than specified time: default 10 mins
       var refresh_duration = 10;
@@ -83,9 +114,14 @@ export default new Vuex.Store({
                     )
                   );
                   commit("SET_COIN_" + data[1].toUpperCase(), response.data);
+                  commit(
+                    "SET_COIN_" + data[1].toUpperCase() + "_LOADING",
+                    false
+                  );
                 });
               } else {
                 commit("SET_COIN_" + data[1].toUpperCase(), res);
+                commit("SET_COIN_" + data[1].toUpperCase() + "_LOADING", false);
               }
             });
           } else {
@@ -96,6 +132,7 @@ export default new Vuex.Store({
                 new Response(JSON.stringify(response.data), response.headers)
               );
               commit("SET_COIN_" + data[1].toUpperCase(), response.data);
+              commit("SET_COIN_" + data[1].toUpperCase() + "_LOADING", false);
             });
           }
         });

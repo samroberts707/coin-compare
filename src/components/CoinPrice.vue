@@ -1,7 +1,7 @@
 <template>
   <div class="coin-price-wrapper">
-    <Loading v-if="coinData.length == 0"></Loading>
-    <div class="coin-price" v-if="coinData.length != 0">
+    <Loading v-if="coinLoading"></Loading>
+    <div class="coin-price" v-if="!coinLoading">
       <div class="name">
         <img
           class="coin-logo"
@@ -30,6 +30,9 @@ export default {
     coinData() {
       const coinString = "coin_" + this.coin_to_view;
       return this.$store.state[coinString];
+    },
+    coinLoading() {
+      return this.$store.state["coin_" + this.coin_to_view + "_loading"];
     },
   },
   components: {

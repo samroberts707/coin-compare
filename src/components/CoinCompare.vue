@@ -1,7 +1,7 @@
 <template>
   <div class="coin-compare">
-    <Loading v-if="coinOne.length == 0 || coinTwo.length == 0"></Loading>
-    <div class="content" v-if="coinOne.length != 0 && coinTwo.length != 0">
+    <Loading v-if="coinOneLoading || coinTwoLoading"></Loading>
+    <div class="content" v-if="!coinOneLoading && !coinTwoLoading">
       <input class="coin-count" v-model="coinCount" />
       <h1>
         {{ coinOne.name }} ==
@@ -28,8 +28,14 @@ export default {
     coinOne() {
       return this.$store.state.coin_one;
     },
+    coinOneLoading() {
+      return this.$store.state.coin_one_loading;
+    },
     coinTwo() {
       return this.$store.state.coin_two;
+    },
+    coinTwoLoading() {
+      return this.$store.state.coin_two_loading;
     },
   },
   components: {
