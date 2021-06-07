@@ -1,12 +1,12 @@
 <template>
   <div class="home">
-    <CoinSelector :coins="coins" coin_to_control="one" />
+    <CoinSelector coin_to_control="one" />
     <Header />
     <CoinPrice coin_to_view="one" />
     <CoinCompare />
     <CoinPrice coin_to_view="two" />
     <Footer />
-    <CoinSelector :coins="coins" coin_to_control="two" />
+    <CoinSelector coin_to_control="two" />
   </div>
 </template>
 
@@ -25,13 +25,9 @@ export default {
     Header,
     Footer,
   },
-  computed: {
-    coins() {
-      return this.$store.state.coin_list;
-    },
-  },
   mounted() {
     this.$store.dispatch("getCoinList");
+    this.$store.dispatch("getPopularCoinList");
     this.$store.dispatch("selectCoin", ["bitcoin", "one"]);
     this.$store.dispatch("selectCoin", ["ethereum", "two"]);
   },
