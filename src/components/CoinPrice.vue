@@ -45,6 +45,7 @@ export default {
 div.coin-price-wrapper {
   display: block;
   width: 50%;
+  max-width: 390px;
   height: 100%;
   border: 2px solid var(--purple);
   border-radius: 25px;
@@ -52,7 +53,6 @@ div.coin-price-wrapper {
   box-shadow: 3px 3px 14px var(--purple);
   align-self: center;
   justify-self: center;
-
   div.coin-price {
     display: grid;
     position: relative;
@@ -67,7 +67,6 @@ div.coin-price-wrapper {
     justify-items: center;
     width: 100%;
     height: 100%;
-
     div.name {
       grid-area: name;
       display: grid;
