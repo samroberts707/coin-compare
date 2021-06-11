@@ -1,7 +1,11 @@
 <template>
-  <div class="coin-selector">
+  <div
+    class="coin-selector"
+    :class="{ hidden: isHidden }"
+    :controlling="coin_to_control"
+  >
     <input placeholder="Search" class="coin-search" v-model="filterVal" />
-    <!-- <Loading v-if="coinLoading" /> -->
+    <Toggle v-on:click.native="isHidden = !isHidden" />
     <div class="coin-list">
       <div
         class="popular selection"
@@ -45,6 +49,7 @@
 
 <script>
 import Loading from "@/components/Loading.vue";
+import Toggle from "@/components/Toggle.vue";
 export default {
   name: "CoinSelector",
   props: ["coin_to_control"],
@@ -52,6 +57,7 @@ export default {
     return {
       filterVal: null,
       openSelection: "popular",
+      isHidden: false,
     };
   },
   computed: {
@@ -98,8 +104,14 @@ export default {
       this.$data.openSelection = selection;
     },
   },
+  mounted() {
+    if (window.innerWidth <= 960) {
+      this.$data.isHidden = true;
+    }
+  },
   components: {
     Loading,
+    Toggle,
   },
 };
 </script>
@@ -110,17 +122,14 @@ div.coin-selector {
   position: relative;
   width: 100%;
   height: 100%;
-  grid-template-areas:
-    "search toggle"
-    "coin-list coin-list";
-  grid-template-columns: 1fr 50px;
   grid-template-rows: 50px 1fr;
-  overflow-y: scroll;
-  overflow-x: hidden;
   border-left: 1px solid #0a0a0a;
   border-right: 1px solid #0a0a0a;
   box-shadow: 0px 0px 13px 0px #0a0a0a;
-  overflow: hidden;
+  background-color: var(--deep-purple);
+  overflow: visible;
+  transition: right 0.8s ease-in-out, left 0.8s ease-in-out;
+  z-index: 3;
   &:first-child {
     transition: left 0.4s ease-in-out;
     left: 0;
@@ -128,6 +137,34 @@ div.coin-selector {
   &:last-child {
     transition: right 0.4s ease-in-out;
     right: 0;
+  }
+  &[controlling="one"] {
+    left: 0;
+    grid-template-areas:
+      "search toggle"
+      "coin-list coin-list";
+    grid-template-columns: 1fr 50px;
+    will-change: left;
+    &.hidden {
+      left: -300px;
+      div.toggle {
+        transform: translateX(50px);
+      }
+    }
+  }
+  &[controlling="two"] {
+    right: 0;
+    grid-template-areas:
+      "toggle search"
+      "coin-list coin-list";
+    grid-template-columns: 50px 1fr;
+    will-change: right;
+    &.hidden {
+      right: -300px;
+      div.toggle {
+        transform: translateX(-50px);
+      }
+    }
   }
   input.coin-search {
     display: block;
@@ -141,6 +178,11 @@ div.coin-selector {
     box-shadow: none;
     outline: none;
     color: var(--yellow);
+  }
+  div.toggle {
+    grid-area: toggle;
+    transition: transform 0.4s ease-in-out;
+    will-change: transform;
   }
   div.coin-list {
     display: block;
@@ -196,6 +238,35 @@ div.coin-selector {
             background-color: var(--purple);
           }
         }
+      }
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    &[controlling="one"] {
+      &.hidden {
+        left: -200px;
+      }
+    }
+    &[controlling="two"] {
+      &.hidden {
+        right: -200px;
+      }
+    }
+  }
+  @media screen and (max-width: 960px) {
+    width: 100vw;
+    height: 100vh;
+    &[controlling="one"] {
+      &.hidden {
+        z-index: 2;
+        left: -100vw;
+      }
+    }
+    &[controlling="two"] {
+      right: 100vw;
+      &.hidden {
+        z-index: 2;
+        right: 0;
       }
     }
   }
